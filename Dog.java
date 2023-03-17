@@ -16,6 +16,7 @@ public class Dog extends Animal{
 
   public static void main(String[] args) {
     Dog pluto = new Dog();
+    Utils.println("Dog" + ' ' +  pluto.getClass().getName());
     pluto.makeSound();
     pluto.eat();
     pluto.setAge(10);
