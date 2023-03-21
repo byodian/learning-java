@@ -1,1 +1,6 @@
 .idea
+*.class
+!com/byodian/**/*.class
+!edu/**/*.class
+!org/**/*.class
+personal.iml
