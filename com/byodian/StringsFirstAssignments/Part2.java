@@ -1,6 +1,7 @@
 package com.byodian.StringsFirstAssignments;
 
 import java.util.Optional;
+import java.util.function.Function;
 
 public class Part2 {
     public static String findSimpleGene(String dna, String startCodon, String stopCodon) {
@@ -25,7 +26,7 @@ public class Part2 {
 
     public static String getSubstr(String codon, String defaultCodon) {
         Optional<String> optionalCodon = Optional.ofNullable(codon);
-        return optionalCodon.isPresent() ? optionalCodon.get() : defaultCodon;
+        return optionalCodon.orElse(defaultCodon);
     }
 
     public static String findSimpleGene2(String dna, String startCodon, String stopCodon) {

@@ -1,4 +1,4 @@
-package com.byodian.StringsFirstAssignments;
+package com.byodian.modifiers;
 
 public class Test {
     public static String publicVar = "Hello world!";

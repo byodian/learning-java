@@ -1,57 +1,35 @@
 package com.byodian.StringsFirstAssignments;
 
-import java.util.NoSuchElementException;
-import java.util.Objects;
-import java.util.function.Consumer;
+public class Part3 {
+   public static boolean twoOccurrences(String stringa, String stringb) {
+       int len = stringa.length();
+       int firstIndex = stringb.indexOf(stringa);
+       if (firstIndex == -1) { return false; }
 
-public class Part3<T> {
-    private static final Part3<?> EMPTY = new Part3<>();
-    private final T value;
-    private Part3() {
-        this.value = null;
-    }
+       int secondIndex = stringb.indexOf(stringa, len);
+       return secondIndex != -1;
+   }
 
-    public static <T> Part3<T> empty() {
-        @SuppressWarnings("unchecked")
-        Part3<T> t = (Part3<T>) EMPTY;
-        return t;
-    }
+   public static String lastPart(String stringa, String stringb) {
+       int startIndex = stringb.indexOf(stringa);
+       if (startIndex == -1) {
+           return stringb;
+       }
 
-    private Part3 (T value) {
-        this.value = Objects.requireNonNull(value);
-    }
+       return stringb.substring(startIndex + stringa.length());
+   }
 
-    public static <T> Part3<T> of(T value) {
-        return new Part3<>(value);
-    }
+   public static void testTwoOccurrences() {
+       System.out.println(twoOccurrences("atg", "gatgtaaatg")); // true
+       System.out.println(twoOccurrences("by", "by the way.")); // false
+       System.out.println(twoOccurrences("two", "There are two classes which are different. two, two")); // true
+       System.out.println((twoOccurrences("go", "Hello world"))); // false
 
-    public static <T> Part3<T> ofNullable(T value) {
-        return value == null ? empty() : of(value);
-    }
+       System.out.println((lastPart("an", "banana"))); // "ana"
+       System.out.println((lastPart("zoo", "forest"))); // "forest"
+   }
 
-    public T get() {
-        if (value == null) {
-            throw new NoSuchElementException("No value present");
-        }
-
-        return value;
-    }
-
-    public boolean isPresent() {
-        return value != null;
-    }
-
-    public void ifPresent(Consumer<? super T> consumer) {
-        if (value != null)
-            consumer.accept(value);
-    }
-
-    public static void main(String[] args) {
-        String publicVar = Test.publicVar;
-        int privateVar = Test.getPrivateVar();
-        publicVar = "Hello Vue!";
-
-        System.out.println(Test.publicVar);
-        System.out.println(publicVar + privateVar);
-    }
+   public static void main(String[] args) {
+       testTwoOccurrences();
+   }
 }
