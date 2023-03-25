@@ -2,11 +2,10 @@ package com.byodian.StringsFirstAssignments;
 
 public class Part3 {
    public static boolean twoOccurrences(String stringa, String stringb) {
-       int len = stringa.length();
        int firstIndex = stringb.indexOf(stringa);
        if (firstIndex == -1) { return false; }
 
-       int secondIndex = stringb.indexOf(stringa, len);
+       int secondIndex = stringb.indexOf(stringa, firstIndex + 1);
        return secondIndex != -1;
    }
 

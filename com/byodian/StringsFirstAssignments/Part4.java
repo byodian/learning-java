@@ -10,13 +10,14 @@ public class Part4 {
     }
 
     public static void main(String[] args) {
-        URLResource ur = new URLResource("https://www.dukelearntoprogram.com//course2/data/manylinks.html");
+        URLResource ur = new URLResource("https://www.dukelearntoprogram.com/course2/data/manylinks.html");
         for (String s : ur.words()) {
             String lowerCaseStr = s.toLowerCase();
             int targetIndex = lowerCaseStr.indexOf("youtube.com");
-            if (targetIndex == -1) continue;
 
-            System.out.println(Part4.findWebUrl(s, targetIndex));
+            if (targetIndex != -1) {
+                System.out.println(Part4.findWebUrl(s, targetIndex));
+            }
         }
     }
 }
