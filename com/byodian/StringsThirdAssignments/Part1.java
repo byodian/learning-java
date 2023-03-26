@@ -1,14 +1,18 @@
 package com.byodian.StringsThirdAssignments;
 
 import static com.byodian.StringsSecondAssignments.Part1.findGene;
+import edu.duke.FileResource;
 import edu.duke.StorageResource;
+
+import java.io.File;
 
 public class Part1 {
     public static void main(String[] args) {
         // testGetAllGenes();
         // testCGRatioAndCountCTG();
 
-        testProcessGenes();
+        // testProcessGenes();
+        testProcessGenesWithFile();
     }
 
     public static StorageResource getAllGenes(String dna) {
@@ -36,7 +40,7 @@ public class Part1 {
         }
     }
 
-    public static float cgRatio(String dna) {
+    public static double cgRatio(String dna) {
         int cgSum = 0 ;
         for(int i = 0; i < dna.length(); i++) {
             char c = dna.charAt(i);
@@ -45,7 +49,7 @@ public class Part1 {
             }
         }
 
-        return (float) cgSum / dna.length();
+        return ((double) cgSum) / dna.length();
     }
 
     public static int countCTG(String dna) {
@@ -73,12 +77,12 @@ public class Part1 {
         int maxLengthGene = 0;
         for(String s : sr.data()) {
             if (s.length() > 9) {
-               System.out.println(s);
+               System.out.println("gene in sr which longer than 9 characters: \n" + s + "\n");
                sum1 = sum1 + 1;
             }
 
             if (cgRatio(s) > 0.35) {
-                System.out.println(s);
+                System.out.println("gene in sr whose C-G-ratio is higher than 0.35: \n" + s + "\n");
                 sum2 = sum2 +1;
             }
 
@@ -99,5 +103,11 @@ public class Part1 {
         processGenes(getAllGenes(str2));
         processGenes(getAllGenes(str3));
         processGenes(getAllGenes(str4));
+    }
+
+    public static void testProcessGenesWithFile() {
+        FileResource fr = new FileResource("dnaline.fa");
+        String dna = fr.asString();
+        processGenes(getAllGenes(dna.toUpperCase()));
     }
 }
