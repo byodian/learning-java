@@ -1,7 +1,5 @@
 .idea
 *.class
-!org/**/*.class
-!edu/**/*.class
 personal.iml
 
 out/
