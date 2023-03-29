@@ -17,8 +17,9 @@ public class CaesarCipher {
     }
 
     public static void test() {
-        System.out.println(encrypt("First Legion", 23));
-        System.out.println(encrypt("First Legion", 17));
+        System.out.println("key is: 23 " + encrypt("First Legion", 23));
+        System.out.println("key is: 23 " + encrypt("First Legion", 17));
+        System.out.println("key is: 23 " + encryptTwoKeys("First Legion", 23, 17));
     }
 
     // handle both uppercase and lowercase letters
@@ -61,6 +62,28 @@ public class CaesarCipher {
 
             if (idx != -1) {
                 char shiftedChar = shiftedAlphabet.charAt(idx);
+                char newChar = Character.isLowerCase(currentChar) ? Character.toLowerCase(shiftedChar): shiftedChar;
+                encrypted.setCharAt(i, newChar);
+            }
+        }
+
+        return encrypted.toString();
+    }
+
+    public static String encryptTwoKeys(String input, int key1, int key2) {
+
+        StringBuilder encrypted = new StringBuilder(input);
+        String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+        String shiftedOddAlphabet = alphabet.substring(key1) + alphabet.substring(0, key1);
+        String shiftedEvenAlphabet = alphabet.substring(key2) + alphabet.substring(0, key2);
+
+        for (int i = 0; i < encrypted.length(); i++) {
+            char currentChar = encrypted.charAt(i);
+            int idx = alphabet.indexOf(Character.toUpperCase(currentChar));
+
+            if (idx != -1) {
+                char shiftedChar = (i + 1) % 2 == 0 ? shiftedOddAlphabet.charAt(idx): shiftedEvenAlphabet.charAt(idx);
                 char newChar = Character.isLowerCase(currentChar) ? Character.toLowerCase(shiftedChar): shiftedChar;
                 encrypted.setCharAt(i, newChar);
             }
