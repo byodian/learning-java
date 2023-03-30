@@ -1,5 +1,7 @@
 package com.byodian.CaesarCipherAssignments;
 
+import edu.duke.FileResource;
+
 import java.util.Random;
 import java.util.Scanner;
 
@@ -7,10 +9,16 @@ public class ArrayInAction {
     public static void main(String[] args) {
         // textFingerPrint("Hello World!");
         // simpleSimulate(10);
+        // test();
+        countShakespeare();
+    }
+
+    public static void test() {
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter a number: ");
         int num = scan.nextInt();
         scan.close();
+
         simpleSimulateWithArrays(num);
     }
 
@@ -64,6 +72,59 @@ public class ArrayInAction {
 
         for (int i = 0; i < results.length; i++) {
             System.out.println(i + "'s=\t" + results[i] + "\t" + 100.0 * results[i]/rolls);
+        }
+    }
+
+    static String[] getCommon() {
+        FileResource fr = new FileResource("google-10000-english-no-swears.txt");
+        String[] commons = new String[20];
+        int index = 0;
+
+        for (String word : fr.words()) {
+            if (index < commons.length) {
+                commons[index] = word;
+                index += 1;
+            }
+        }
+
+        return commons;
+    }
+
+    static int indexOf(String[] list, String word) {
+        for (int k = 0; k < list.length; k++) {
+            if (list[k].equals(word)) {
+                return k;
+            }
+        }
+
+        return -1;
+    }
+
+    static void countWords(FileResource resource, String[] commons, int[] counts) {
+        for (String word : resource.words()) {
+            int index = indexOf(commons, word);
+
+            if (index != -1) {
+                counts[index] += 1;
+            }
+        }
+    }
+
+    static void countShakespeare() {
+        // String[] plays = { "caesar.txt", "errors.txt", "hamlet.txt", "likeit.txt", "macbeth.txt", "romeo.txt" };
+        String[] plays = { "test.txt" };
+
+        String[] common = getCommon();
+        int[] counts = new int[common.length];
+
+        for (String play : plays) {
+            FileResource resource = new FileResource(play);
+            countWords(resource, common, counts);
+            System.out.println("done with " + play);
+        }
+
+        for (int k = 0; k < common.length; k++) {
+            System.out.println(common[k] + "\t" + counts[k]);
         }
     }
 }
