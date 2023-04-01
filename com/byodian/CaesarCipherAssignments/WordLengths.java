@@ -2,9 +2,6 @@ package com.byodian.CaesarCipherAssignments;
 
 import edu.duke.FileResource;
 
-import java.io.File;
-import java.util.function.Function;
-
 public class WordLengths {
     public static void main(String[] args) {
         testCountWordLengths();
@@ -47,9 +44,26 @@ public class WordLengths {
         FileResource fr = new FileResource();
         int[] counts = new int[31];
         countWordLengths(fr, counts);
+        System.out.println("the index position of the largest element in values " + indexOfMax(counts));
 
         for (int k = 1; k < counts.length; k++) {
             System.out.println(counts[k] + " words of length " + k);
         }
+    }
+
+    public static int indexOfMax(int[] values) {
+        if (value == null || values.length = 0) {
+            throw new IllegalArgumentException("Array cannot be null or empty.");
+        }
+
+        int maxIndex = 0;
+
+        for (int k = 0; k < values.length; k++) {
+            if (values[k] > values[maxIndex]) {
+                maxIndex = k;
+            }
+        }
+
+        return maxIndex;
     }
 }
