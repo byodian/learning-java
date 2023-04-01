@@ -30,6 +30,19 @@ public class WordLengths {
         }
     }
 
+    public static void countWordLengths2(FileResource resource, int[] counts) {
+        for (String word : resource.words()) {
+            String cleanWord = word.replaceAll("^[^a-zA-Z]+|[^a-zA-Z]$", "");
+            int len = cleanWord.length();
+
+            if (len >= counts.length) {
+                counts[len - 1] += 1;
+            } else {
+               counts[len] += 1;
+            }
+        }
+    }
+
     public static void testCountWordLengths() {
         FileResource fr = new FileResource();
         int[] counts = new int[31];
