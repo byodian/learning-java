@@ -3,7 +3,7 @@
 ## courses
 本项目是学习杜克大学的 [Java Programming and Software Engineering Fundamentals](https://www.coursera.org/specializations/java-programming#courses) 专项课程的课后作业成果。
 
-courses 上的课程支持免费**旁听**观看，但不能做活得证书相关的 Review 评分作业。
+courses 上的课程支持免费**旁听**观看，但不能做与获得证书相关的 Review 评分作业。
 
 Java 相关的课程如下：
 
