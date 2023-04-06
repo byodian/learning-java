@@ -151,20 +151,29 @@ public class LogAnalyzer {
         return dateString;
     }
 
-    public ArrayList<String> iPsWithMostVisitsOnDay(HashMap<String, ArrayList<String>> counts, String day) {
-        HashMap<String, Integer> countPerIp = new HashMap<>();
-        if (counts.get(day) == null) {
-            throw new NoSuchElementException(day + " is not in " + counts.toString());
-        }
-
-        for (String s : counts.get(day)) {
-            if (!countPerIp.containsKey(s)) {
-                countPerIp.put(s, 1);
+    public HashMap<String, Integer> countVisitsPerIPFromList(ArrayList<String> ips) {
+        HashMap<String, Integer> countsPerIp = new HashMap<>();
+        for (String s : ips) {
+            if (!countsPerIp.containsKey(s)) {
+                countsPerIp.put(s, 1);
             } else {
-                countPerIp.put(s, countPerIp.get(s) + 1);
+                countsPerIp.put(s, countsPerIp.get(s) + 1);
             }
         }
 
-        return iPsMostVisits(countPerIp);
+        return countsPerIp;
+    }
+
+    public ArrayList<String> iPsWithMostVisitsOnDay(HashMap<String, ArrayList<String>> counts, String day) {
+
+        ArrayList<String> ipList = new ArrayList<>();
+        for (String key : counts.keySet()) {
+            if (key.equals(day)) {
+                ipList = counts.get(key);
+            }
+        }
+
+        HashMap<String, Integer> countsPerIp = countVisitsPerIPFromList(ipList);
+        return iPsMostVisits(countsPerIp);
     }
 }
