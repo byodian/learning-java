@@ -49,7 +49,7 @@ public class Tester {
     public static void testCountVisitsPerIp() {
         LogAnalyzer le = new LogAnalyzer();
         // le.readFile("short-test_log");
-        le.readFile("weblog3-short_log");
+        le.readFile("weblog1_log");
         HashMap<String, Integer> visitsPerIp = le.countVisitsPerIp();
 
         System.out.println(visitsPerIp);
@@ -60,11 +60,11 @@ public class Tester {
     public static void testCountWebSiteVisits() {
         LogAnalyzer le = new LogAnalyzer();
         // le.readFile("short-test_log");
-        le.readFile("weblog3-short_log");
+        le.readFile("weblog1_log");
         HashMap<String, ArrayList<String>> counts = le.iPsForDays();
 
         System.out.println(counts);
         System.out.println(le.dayWithMostIPVisits(counts));
-        System.out.println(le.iPsWithMostVisitsOnDay(counts, "Sep 30"));
+        System.out.println(le.iPsWithMostVisitsOnDay(counts, "Mar 17"));
     }
 }
